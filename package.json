@@ -1,0 +1,33 @@
+{
+  "name": "json-odds-api",
+  "version": "1.0.0",
+  "description": "JSON Odds API",
+  "main": "jsonOddsAPI.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sbefort/json-odds-api.git"
+  },
+  "keywords": [
+    "json",
+    "odds",
+    "api",
+    "sports"
+  ],
+  "author": "Shaun Befort",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sbefort/json-odds-api/issues"
+  },
+  "homepage": "https://github.com/sbefort/json-odds-api#readme",
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "lodash": "^4.12.0",
+    "qs": "^6.1.0",
+    "request": "^2.72.0"
+  }
+}
