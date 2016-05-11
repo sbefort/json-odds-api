@@ -36,7 +36,11 @@ var JsonOddsAPI = function(token) {
 		};
 		request.get(requestOptions, function (err, response, body) {
 			if (err) return cb(err);
-			cb(null, response, body);
+			if (!body || _.isEmpty(JSON.parse(body))) return cb(null, '');
+			parse(body, function(err, parsed) {
+				if (err) return cb(err);
+				cb(null, response, parsed);
+			});
 		});
 	}).bind(this);
 
@@ -53,6 +57,16 @@ var JsonOddsAPI = function(token) {
 			cb(null, response, body);
 		});
 	}).bind(this);
+
+	var parse = function(body, cb) {
+		try {
+			var result = JSON.parse(body);
+			return cb(null, result);
+		}
+		catch(e){
+			return cb(e + ', Data: ' + body);
+		}
+	}
 
 	this.getSources = function(cb) {
 		var options = {};
