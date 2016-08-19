@@ -36,7 +36,7 @@ var JsonOddsAPI = function(token) {
 		};
 		request.get(requestOptions, function (err, response, body) {
 			if (err) return cb(err);
-			if (!body || _.isEmpty(JSON.parse(body))) return cb(null, '');
+			if (!body) return cb(null, '');
 			parse(body, function(err, parsed) {
 				if (err) return cb(err);
 				cb(null, response, parsed);
@@ -61,6 +61,7 @@ var JsonOddsAPI = function(token) {
 	var parse = function(body, cb) {
 		try {
 			var result = JSON.parse(body);
+			if (_.isEmpty(result)) return cb(null, '');
 			return cb(null, result);
 		}
 		catch(e){
