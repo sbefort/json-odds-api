@@ -36,7 +36,8 @@ var JsonOddsAPI = function(token) {
 		};
 		request.get(requestOptions, function (err, response, body) {
 			if (err) return cb(err);
-			if (!body) return cb(null, '');
+			if (response.statusCode !== 200) return cb(new Error('Invalid response code. The response returned from the server was ' + response.statusCode));
+			if (!body) return cb(new Error('JSON Odds API return an invalid body.'));
 			parse(body, function(err, parsed) {
 				if (err) return cb(err);
 				cb(null, response, parsed);
@@ -61,7 +62,7 @@ var JsonOddsAPI = function(token) {
 	var parse = function(body, cb) {
 		try {
 			var result = JSON.parse(body);
-			if (_.isEmpty(result)) return cb(null, '');
+			if (_.isEmpty(result)) return cb(new Error('There was a problem parsing an empty result.'));
 			return cb(null, result);
 		}
 		catch(e){

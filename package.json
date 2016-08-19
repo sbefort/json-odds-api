@@ -1,6 +1,6 @@
 {
   "name": "json-odds-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "JSON Odds API",
   "main": "jsonOddsAPI.js",
   "scripts": {
